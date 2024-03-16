@@ -9,12 +9,12 @@ const carsRoutes = require("./route/cars-route.js");
 app.use(express.json());
 
 // provide module-specific routes here
+app.use("/cars", carsRoutes);
 app.use("/", (_, res) =>
     res.status(200).json({
         data: null,
         message: "Ping successfully",
     })
 );
-app.use("/cars", carsRoutes);
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
