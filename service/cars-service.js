@@ -8,4 +8,8 @@ function getCarById(id) {
     return carsRepo.getCarById(id);
 }
 
-module.exports = { getAllCars, getCarById };
+function addCar(payload) {
+    return carsRepo.addCar(payload);
+}
+
+module.exports = { getAllCars, getCarById, addCar };

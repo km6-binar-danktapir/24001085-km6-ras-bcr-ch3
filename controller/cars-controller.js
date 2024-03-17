@@ -17,4 +17,14 @@ function getCarById(req, res) {
     });
 }
 
-module.exports = { getAllCars, getCarById };
+function addCar(req, res) {
+    const payload = req.body;
+    const car = carsService.addCar(payload);
+
+    return res.status(201).json({
+        data: car,
+        message: null,
+    });
+}
+
+module.exports = { getAllCars, getCarById, addCar };
