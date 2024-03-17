@@ -7,4 +7,14 @@ function getAllCars(_, res) {
     });
 }
 
-module.exports = { getAllCars };
+function getCarById(req, res) {
+    const carId = req.params.id;
+    const car = carsService.getCarById(carId);
+
+    return res.status(car ? 200 : 404).json({
+        data: car ? car : null,
+        message: car ? null : `Car with ID ${carId} does not exist!`,
+    });
+}
+
+module.exports = { getAllCars, getCarById };

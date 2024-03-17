@@ -4,4 +4,8 @@ function getAllCars() {
     return carsRepo.getAllCars();
 }
 
-module.exports = { getAllCars };
+function getCarById(id) {
+    return carsRepo.getCarById(id);
+}
+
+module.exports = { getAllCars, getCarById };
