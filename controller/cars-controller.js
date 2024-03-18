@@ -47,14 +47,12 @@ function updateCarById(req, res) {
             });
         }
     }
-
     const carId = req.params.id;
-
     const car = carsService.updateCarById(carId, payload);
 
-    return res.status(200).json({
-        data: car,
-        message: null,
+    return res.status(car ? 200 : 400).json({
+        data: car ? car : null,
+        message: car ? null : `Car with ID ${id} does not exist!`,
     });
 }
 

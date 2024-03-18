@@ -15,6 +15,10 @@ function addCar(payload) {
 function updateCarById(id, payload) {
     const car = carsRepo.getCarById(id);
 
+    if (!car) {
+        return null;
+    }
+
     for (let attr in payload) {
         car[attr] = payload[attr];
     }
