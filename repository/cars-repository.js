@@ -9,6 +9,10 @@ function getCarById(id) {
     return cars.find((car) => car.id === id);
 }
 
+function getCarIndexById(id) {
+    return cars.findIndex((car) => car.id === id);
+}
+
 function addCar(payload) {
     const car = {
         id: uuidv4(),
@@ -18,4 +22,16 @@ function addCar(payload) {
     return cars[cars.length - 1];
 }
 
-module.exports = { getAllCars, getCarById, addCar };
+function deleteCarByIndex(idx) {
+    const deletedCar = cars[idx];
+    cars.splice(idx, 1);
+    return deletedCar;
+}
+
+module.exports = {
+    getAllCars,
+    getCarById,
+    addCar,
+    getCarIndexById,
+    deleteCarByIndex,
+};

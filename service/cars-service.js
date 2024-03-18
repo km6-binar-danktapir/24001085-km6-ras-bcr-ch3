@@ -22,4 +22,19 @@ function updateCarById(id, payload) {
     return car;
 }
 
-module.exports = { getAllCars, getCarById, addCar, updateCarById };
+function deleteCarById(id) {
+    const carIdx = carsRepo.getCarIndexById(id);
+
+    if (carIdx === -1) {
+        return null;
+    }
+    return carsRepo.deleteCarByIndex(carIdx);
+}
+
+module.exports = {
+    getAllCars,
+    getCarById,
+    addCar,
+    updateCarById,
+    deleteCarById,
+};

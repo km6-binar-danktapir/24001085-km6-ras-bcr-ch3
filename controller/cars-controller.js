@@ -58,4 +58,20 @@ function updateCarById(req, res) {
     });
 }
 
-module.exports = { getAllCars, getCarById, addCar, updateCarById };
+function deleteCarById(req, res) {
+    const carId = req.params.id;
+    const car = carsService.deleteCarById(carId);
+
+    return res.status(car ? 200 : 404).json({
+        data: car ? car : null,
+        message: car ? null : `Car with ID ${id} does not exist!`,
+    });
+}
+
+module.exports = {
+    getAllCars,
+    getCarById,
+    addCar,
+    updateCarById,
+    deleteCarById,
+};
