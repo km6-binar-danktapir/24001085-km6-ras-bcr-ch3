@@ -10,6 +10,7 @@ app.use(express.json());
 
 // provide module-specific routes here
 app.use("/cars", carsRoutes);
+
 app.use("/", (_, res) =>
     res.status(200).json({
         data: null,
