@@ -12,4 +12,14 @@ function addCar(payload) {
     return carsRepo.addCar(payload);
 }
 
-module.exports = { getAllCars, getCarById, addCar };
+function updateCarById(id, payload) {
+    const car = carsRepo.getCarById(id);
+
+    for (let attr in payload) {
+        car[attr] = payload[attr];
+    }
+
+    return car;
+}
+
+module.exports = { getAllCars, getCarById, addCar, updateCarById };

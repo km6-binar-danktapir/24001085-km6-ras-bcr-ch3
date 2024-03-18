@@ -18,9 +18,4 @@ function addCar(payload) {
     return cars[cars.length - 1];
 }
 
-function updateCar(carIdx, updatedCar) {
-    cars[carIdx] = updateCar;
-    return updateCar;
-}
-
-module.exports = { getAllCars, getCarById, addCar, updateCar };
+module.exports = { getAllCars, getCarById, addCar };
