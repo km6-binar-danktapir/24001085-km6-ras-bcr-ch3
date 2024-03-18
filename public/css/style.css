@@ -1,0 +1,23 @@
+header {
+    background-color: #f1f3ff;
+}
+
+body {
+    font-family: "Helvetica";
+}
+
+.navbar-item {
+    font-weight: 400;
+    color: #000000;
+}
+
+.logo {
+    width: 100px;
+    height: 34px;
+    background: #0d28a6;
+}
+
+.footer-navigation {
+    font-weight: bold;
+    width: fit-content;
+}

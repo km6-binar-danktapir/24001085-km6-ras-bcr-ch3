@@ -1,0 +1,39 @@
+.car-price {
+    font-weight: bold;
+}
+
+.car-description {
+    text-align: justify;
+}
+
+.list-car-features {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.list-car-features li p {
+    display: inline;
+    text-align: justify;
+}
+
+.car-image {
+    height: 250px !important; /*override default given height*/
+    width: 100%;
+    object-fit: fill;
+}
+
+.car-card {
+    height: 100% !important;
+}
+
+.car-card .card-body {
+    height: 100% !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#cari-mobil-section .card {
+    background: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+}

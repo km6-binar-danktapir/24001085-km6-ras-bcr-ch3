@@ -1,0 +1,29 @@
+#list-service-feature {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#list-service-feature li {
+    margin-bottom: 15px;
+}
+
+.service-feature {
+    display: inline;
+    margin-left: 10px;
+}
+
+.accordion-item {
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.accordion-item .accordion-button:hover,
+.accordion-item .accordion-button:focus {
+    background-color: #fff;
+    box-shadow: none;
+}
+
+.sewa-mobil-anchor {
+    color: #fff;
+    text-decoration: none;
+}
