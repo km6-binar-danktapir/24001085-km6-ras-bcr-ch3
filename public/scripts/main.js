@@ -1,7 +1,5 @@
 import App from "./App.js";
 
-await App.initData();
-
 const cariMobilBtn = document.getElementById("cari-mobil-btn");
 
 cariMobilBtn.addEventListener("click", (event) => {

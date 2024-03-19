@@ -21,36 +21,26 @@ export default class App {
         throw new Error("Cannot instantiate App object");
     }
 
-    static async initData() {
-        /**
-         * fetch cars data from backend
-         */
-        const response = await fetch("http://localhost:3000/cars");
-        const carsData = await response.json();
-        console.log(carsData);
-        Car.init(carsData);
-    }
-
     static filter() {
         /**
          * filter berdasarkan input fields
          */
-        const driverOption = document.getElementById("pilih-driver").value;
+        const driverType = document.getElementById("pilih-driver").value;
         const selectedDate = document.getElementById("date-picker").value;
-        const selectedWaktuJemput =
+        const selectedPickUpTime =
             document.getElementById("waktu-jemput").value;
         const passengersCapacity =
             document.getElementById("jumlah-penumpang").value;
 
-        const waktuJemputTimestamp = getTimeStamp(
+        const pickUpTimeStamp = getTimeStamp(
             selectedDate,
-            selectedWaktuJemput
+            selectedPickUpTime
         );
 
         const filteredCars = Car.records.filter((car) => {
             if (
-                car.hasOption(driverOption) &&
-                waktuJemputTimestamp > car.availableAt
+                car.hasOption(driverType) &&
+                pickUpTimeStamp > car.availableAt
             ) {
                 if (passengersCapacity) {
                     const parsedPassengersCapacity =
