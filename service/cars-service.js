@@ -4,6 +4,10 @@ function getAllCars() {
     return carsRepo.getAllCars();
 }
 
+function getFilteredCars(params) {
+    return carsRepo.getFilteredCars(params);
+}
+
 function getCarById(id) {
     return carsRepo.getCarById(id);
 }
@@ -41,4 +45,5 @@ module.exports = {
     addCar,
     updateCarById,
     deleteCarById,
+    getFilteredCars,
 };

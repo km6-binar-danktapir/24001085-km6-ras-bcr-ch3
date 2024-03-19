@@ -1,8 +1,25 @@
 const carsService = require("../service/cars-service.js");
 
-function getAllCars(_, res) {
+function getCars(req, res) {
+    const params = req.query;
+
+    if (Object.keys(params).length === 0) {
+        return res.status(200).json({
+            data: carsService.getAllCars(),
+            message: null,
+        });
+    }
+
+    if (!params.driverType || !params.pickUpTimestamp) {
+        return res.status(400).json({
+            data: null,
+            message:
+                "Driver type and pick up timestamp fields must not be empty!",
+        });
+    }
+
     return res.status(200).json({
-        data: carsService.getAllCars(),
+        data: carsService.getFilteredCars(params),
         message: null,
     });
 }
@@ -67,7 +84,7 @@ function deleteCarById(req, res) {
 }
 
 module.exports = {
-    getAllCars,
+    getCars,
     getCarById,
     addCar,
     updateCarById,

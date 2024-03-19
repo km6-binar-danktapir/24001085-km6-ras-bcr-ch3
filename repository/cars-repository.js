@@ -5,6 +5,24 @@ function getAllCars() {
     return cars;
 }
 
+function getFilteredCars(params) {
+    const { driverType, pickUpTimeStamp, passengersCapacity } = params;
+
+    return cars.filter((car) => {
+        if (
+            car.options.includes(driverType) &&
+            pickUpTimeStamp > car.availableAt
+        ) {
+            if (passengersCapacity) {
+                const parsedPassengersCapacity = parseInt(passengersCapacity);
+                return car.capacity > parsedPassengersCapacity;
+            }
+            return true;
+        }
+        return false;
+    });
+}
+
 function getCarById(id) {
     return cars.find((car) => car.id === id);
 }
@@ -34,4 +52,5 @@ module.exports = {
     addCar,
     getCarIndexById,
     deleteCarByIndex,
+    getFilteredCars,
 };
