@@ -1,4 +1,7 @@
-function getTimeStamp(date, time) {
+/**
+ * get timestamp from date and time
+ */
+export function getTimeStamp(date, time) {
     const dateParts = date.split("-");
     const timeParts = time.split(":");
     const timestamp = new Date(
@@ -12,5 +15,3 @@ function getTimeStamp(date, time) {
 
     return timestamp;
 }
-
-module.exports = { getTimeStamp };
