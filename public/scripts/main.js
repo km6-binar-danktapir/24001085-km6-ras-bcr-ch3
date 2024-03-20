@@ -61,7 +61,7 @@ async function displayFilteredCars() {
 
 function renderCar(car) {
     return `
-                <div class="col-md-4">
+                <div class="col-lg-3">
                     <div class="card car-card">
                         <img
                             class="img-fluid card-img-top car-image"

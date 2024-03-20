@@ -1,4 +1,5 @@
 const carsService = require("../service/cars-service.js");
+const carsRepo = require("../repository/cars-repository.js");
 
 function getCars(req, res) {
     const params = req.query;
@@ -58,6 +59,18 @@ function getCarById(req, res) {
 
 function addCar(req, res) {
     const payload = req.body;
+    const firstCar = carsRepo.getFirstCar();
+
+    // cek kalo ada attribute yg missing di payload
+    for (let attr in firstCar) {
+        if (!payload.hasOwnProperty(attr) && attr !== "id") {
+            return res.status(400).json({
+                data: null,
+                message: `Must provide attribute ${attr}!`,
+            });
+        }
+    }
+
     const car = carsService.addCar(payload);
 
     return res.status(201).json({

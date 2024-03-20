@@ -28,6 +28,10 @@ function getFilteredCars(params) {
     return filteredCars;
 }
 
+function getFirstCar() {
+    return cars[0];
+}
+
 function getCarById(id) {
     return cars.find((car) => car.id === id);
 }
@@ -58,4 +62,5 @@ module.exports = {
     getCarIndexById,
     deleteCarByIndex,
     getFilteredCars,
+    getFirstCar,
 };
