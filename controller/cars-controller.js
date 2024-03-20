@@ -18,6 +18,28 @@ function getCars(req, res) {
         });
     }
 
+    let parsedDriverType;
+
+    switch (params.driverType) {
+        case "cruise-control":
+            parsedDriverType = "Cruise Control";
+            break;
+        case "keyless-entry":
+            parsedDriverType = "Keyless Entry";
+            break;
+        default:
+            break;
+    }
+
+    if (!parsedDriverType) {
+        return res.status(400).json({
+            data: null,
+            message: "Must enter a valid driver type value!",
+        });
+    }
+
+    params.driverType = parsedDriverType;
+
     return res.status(200).json({
         data: carsService.getFilteredCars(params),
         message: null,
