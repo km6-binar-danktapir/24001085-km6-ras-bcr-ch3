@@ -1,5 +1,8 @@
 import { getTimeStamp } from "./utils.js";
 
+const driverTypeField = document.getElementById("pilih-driver");
+const dateField = document.getElementById("date-picker");
+const pickUpTimeField = document.getElementById("waktu-jemput");
 const cariMobilBtn = document.getElementById("cari-mobil-btn");
 const displayedCarsSection = document.getElementById("displayed-cars-section");
 
@@ -13,9 +16,9 @@ async function getFilteredCars() {
     /**
      * filter berdasarkan input fields
      */
-    const driverType = document.getElementById("pilih-driver").value;
-    const selectedDate = document.getElementById("date-picker").value;
-    const selectedPickUpTime = document.getElementById("waktu-jemput").value;
+    const driverType = driverTypeField.value;
+    const selectedDate = dateField.value;
+    const selectedPickUpTime = pickUpTimeField.value;
     const passengersCapacity =
         document.getElementById("jumlah-penumpang").value;
     const pickUpTimeStamp = getTimeStamp(selectedDate, selectedPickUpTime);
@@ -42,7 +45,6 @@ async function displayFilteredCars() {
     const filteredCars = await getFilteredCars();
 
     if (filteredCars.length !== 0) {
-        // if there are cars with corresponding filters, then do:
         displayedCarsSection.innerHTML = `<div class="row g-4" id="displayed-cars"></div>`;
 
         const carsContainer = document.getElementById("displayed-cars");
@@ -111,6 +113,23 @@ function renderCar(car) {
                 </div>
         `;
 }
+
+/**
+ * toggle button's behavior when required fields are empty
+ */
+function toggleCariMobilBtn() {
+    if (!driverTypeField.value || !dateField.value || !pickUpTimeField.value) {
+        cariMobilBtn.disabled = true;
+    } else {
+        cariMobilBtn.disabled = false;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", toggleCariMobilBtn);
+
+driverTypeField.addEventListener("change", toggleCariMobilBtn);
+dateField.addEventListener("input", toggleCariMobilBtn);
+pickUpTimeField.addEventListener("change", toggleCariMobilBtn);
 
 cariMobilBtn.addEventListener("click", async (event) => {
     await displayFilteredCars();
