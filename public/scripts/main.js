@@ -21,7 +21,7 @@ async function getFilteredCars() {
     const pickUpTimeStamp = getTimeStamp(selectedDate, selectedPickUpTime);
 
     const response = await fetch(
-        `/cars?driverType=${driverType}&pickUpTimestamp=${pickUpTimeStamp}&passengerCapacity=${passengersCapacity}`
+        `/cars?driverType=${driverType}&pickUpTimestamp=${pickUpTimeStamp.toISOString()}&passengerCapacity=${passengersCapacity}`
     );
     const { data } = await response.json();
     return data;
@@ -36,6 +36,23 @@ async function displayAllCars() {
     cars.forEach((car) => {
         carsContainer.innerHTML += renderCar(car);
     });
+}
+
+async function displayFilteredCars() {
+    const filteredCars = await getFilteredCars();
+
+    if (filteredCars.length !== 0) {
+        // if there are cars with corresponding filters, then do:
+        displayedCarsSection.innerHTML = `<div class="row g-4" id="displayed-cars"></div>`;
+
+        const carsContainer = document.getElementById("displayed-cars");
+
+        filteredCars.forEach((car) => {
+            carsContainer.innerHTML += renderCar(car);
+        });
+    } else {
+        displayedCarsSection.innerHTML = "";
+    }
 }
 
 function renderCar(car) {
@@ -96,21 +113,9 @@ function renderCar(car) {
 }
 
 cariMobilBtn.addEventListener("click", async (event) => {
-    const filteredCars = await getFilteredCars();
-    const carsContainer = document.getElementById("displayed-cars");
+    await displayFilteredCars();
 
     event.preventDefault();
-
-    if (filteredCars.length !== 0) {
-        // if there are cars with corresponding filters, then do:
-        displayedCarsSection.innerHTML = `<div class="row g-4" id="displayed-cars"></div>`;
-
-        filteredCars.forEach((car) => {
-            carsContainer.innerHTML += renderCar(car);
-        });
-    } else {
-        displayedCarsSection.innerHTML = "";
-    }
 });
 
 displayAllCars();

@@ -11,7 +11,5 @@ export function getTimeStamp(date, time) {
         parseInt(timeParts[0]),
         parseInt(timeParts[1])
     );
-    console.log(timestamp);
-
     return timestamp;
 }

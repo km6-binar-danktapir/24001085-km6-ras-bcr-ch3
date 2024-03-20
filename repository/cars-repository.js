@@ -6,13 +6,13 @@ function getAllCars() {
 }
 
 function getFilteredCars(params) {
-    const { driverType, pickUpTimeStamp, passengersCapacity } = params;
+    const { driverType, pickUpTimestamp, passengersCapacity } = params;
+    const filteredCars = cars.filter((car) => {
+        // convert from ISO string format to date object
+        const pickUpDate = new Date(pickUpTimestamp);
+        const carAvailableDate = new Date(car.availableAt);
 
-    return cars.filter((car) => {
-        if (
-            car.options.includes(driverType) &&
-            pickUpTimeStamp > car.availableAt
-        ) {
+        if (car.options.includes(driverType) && pickUpDate > carAvailableDate) {
             if (passengersCapacity) {
                 const parsedPassengersCapacity = parseInt(passengersCapacity);
                 return car.capacity > parsedPassengersCapacity;
@@ -21,6 +21,7 @@ function getFilteredCars(params) {
         }
         return false;
     });
+    return filteredCars;
 }
 
 function getCarById(id) {
