@@ -19,7 +19,7 @@
 .car-image {
     height: 250px !important; /*override default given height*/
     width: 100%;
-    object-fit: fill;
+    object-fit: cover;
 }
 
 .car-card {

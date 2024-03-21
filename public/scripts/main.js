@@ -23,8 +23,6 @@ async function getFilteredCars() {
         document.getElementById("jumlah-penumpang").value;
     const pickUpTimeStamp = getTimeStamp(selectedDate, selectedPickUpTime);
 
-    console.log(driverType);
-
     const response = await fetch(
         `/cars?driverType=${driverType}&pickUpTimestamp=${pickUpTimeStamp.toISOString()}&passengerCapacity=${passengersCapacity}`
     );

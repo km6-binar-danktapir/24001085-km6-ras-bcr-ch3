@@ -13,10 +13,7 @@ function getFilteredCars(params) {
         const pickUpDate = new Date(pickUpTimestamp);
         const carAvailableDate = new Date(car.availableAt);
 
-        if (
-            car.options.includes(driverType) &&
-            pickUpDate > carAvailableDate
-        ) {
+        if (car.options.includes(driverType) && pickUpDate > carAvailableDate) {
             if (passengersCapacity) {
                 const parsedPassengersCapacity = parseInt(passengersCapacity);
                 return car.capacity > parsedPassengersCapacity;
